@@ -8,14 +8,14 @@ Validates:
 - The critical late-status-update scenario
 """
 
-from datetime import datetime, date
+from datetime import date, datetime
 from decimal import Decimal
 
 from src.db.postgres import PostgresClient
 from src.extract.extractor import Extractor
 from src.transform.transformer import Transformer
 from src.watermark import EPOCH
-from tests.conftest import insert_order, update_order_status
+from tests.conftest import insert_order
 
 
 class TestGroupIdentification:

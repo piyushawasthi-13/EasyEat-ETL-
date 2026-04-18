@@ -13,21 +13,18 @@ Fixtures handle:
 
 import os
 import uuid
-from datetime import datetime, timedelta
+from datetime import datetime
 from decimal import Decimal
 
-import psycopg2
-import psycopg2.extras
 import pytest
 
 from src.config import Settings
-from src.db.postgres import PostgresClient
 from src.db.mongo import MongoDBClient
-from src.watermark import WatermarkManager
+from src.db.postgres import PostgresClient
 from src.extract.extractor import Extractor
-from src.transform.transformer import Transformer
 from src.load.loader import Loader
-
+from src.transform.transformer import Transformer
+from src.watermark import WatermarkManager
 
 # ---------------------------------------------------------------------------
 # Test settings — override with env vars in CI

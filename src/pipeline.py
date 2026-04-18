@@ -22,17 +22,18 @@ import logging
 import os
 import sys
 import time
-from datetime import datetime, date
+
+from datetime import date, datetime
 
 import psutil
 
-from src.config import get_settings, Settings
-from src.db.postgres import PostgresClient
+from src.config import Settings, get_settings
 from src.db.mongo import MongoDBClient
-from src.watermark import WatermarkManager
+from src.db.postgres import PostgresClient
 from src.extract.extractor import Extractor
-from src.transform.transformer import Transformer
 from src.load.loader import Loader
+from src.transform.transformer import Transformer
+from src.watermark import WatermarkManager
 
 logger = logging.getLogger(__name__)
 

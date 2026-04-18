@@ -6,15 +6,15 @@ running it multiple times on the same data produces identical results.
 No duplicates, no accumulated counts, no corrupted state.
 """
 
-from datetime import datetime, date
+from datetime import datetime
 from decimal import Decimal
 
-from src.db.postgres import PostgresClient
 from src.db.mongo import MongoDBClient
+from src.db.postgres import PostgresClient
 from src.extract.extractor import Extractor
-from src.transform.transformer import Transformer
 from src.load.loader import Loader
-from src.watermark import WatermarkManager, EPOCH
+from src.transform.transformer import Transformer
+from src.watermark import EPOCH, WatermarkManager
 from tests.conftest import insert_order
 
 

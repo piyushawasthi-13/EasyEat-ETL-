@@ -22,7 +22,7 @@ import logging
 from datetime import date
 
 from src.db.postgres import PostgresClient
-from src.models import Order, DailyMetric
+from src.models import DailyMetric, Order
 
 logger = logging.getLogger(__name__)
 

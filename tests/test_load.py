@@ -8,11 +8,10 @@ Validates:
 - Bulk operation correctness
 """
 
-from datetime import datetime
 from decimal import Decimal
 
-from src.load.loader import Loader
 from src.db.mongo import MongoDBClient
+from src.load.loader import Loader
 from src.models import DailyMetric
 
 

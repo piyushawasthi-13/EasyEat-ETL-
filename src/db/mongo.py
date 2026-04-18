@@ -7,7 +7,7 @@ index management for the target database.
 
 import logging
 
-from pymongo import MongoClient, ASCENDING
+from pymongo import ASCENDING, MongoClient
 from pymongo.collection import Collection
 from pymongo.database import Database
 

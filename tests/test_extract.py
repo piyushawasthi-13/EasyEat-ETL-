@@ -8,11 +8,10 @@ Validates:
 - Backfill mode date range filtering
 """
 
-from datetime import datetime, date
-from decimal import Decimal
+from datetime import date, datetime
 
-from src.extract.extractor import Extractor
 from src.db.postgres import PostgresClient
+from src.extract.extractor import Extractor
 from src.watermark import EPOCH
 from tests.conftest import insert_order
 

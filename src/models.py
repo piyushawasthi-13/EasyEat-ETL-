@@ -5,7 +5,7 @@ These Pydantic models serve as data contracts between pipeline stages,
 ensuring type safety and validation at every boundary.
 """
 
-from datetime import datetime, date
+from datetime import date, datetime
 from decimal import Decimal
 from enum import Enum
 

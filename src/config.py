@@ -5,8 +5,8 @@ All pipeline configuration is driven by environment variables,
 validated at startup. No hardcoded values in source code.
 """
 
-from pydantic_settings import BaseSettings
 from pydantic import Field
+from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
