@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: easyeat
+      POSTGRES_PASSWORD: easyeat_secret
+      POSTGRES_DB: easyeat
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U easyeat"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  mongodb:
+    image: mongo:7
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: easyeat
+      MONGO_INITDB_ROOT_PASSWORD: easyeat_secret
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  etl:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    environment:
+      POSTGRES_DSN: postgresql://easyeat:easyeat_secret@postgres:5432/easyeat
+      MONGO_URI: mongodb://easyeat:easyeat_secret@mongodb:27017
+      MONGO_DB: easyeat
+      BATCH_SIZE: 5000
+      LOG_LEVEL: INFO
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app/tests
+
+volumes:
+  pg_data:
+  mongo_data:
