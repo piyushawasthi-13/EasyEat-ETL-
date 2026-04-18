@@ -22,7 +22,6 @@ import logging
 import os
 import sys
 import time
-
 from datetime import date, datetime
 
 import psutil
@@ -118,7 +117,11 @@ class ETLPipeline:
         # Read watermark once outside the loop.
         # In dry-run mode we advance it in-memory so the loop terminates
         # without writing anything to MongoDB.
-        assert self._extractor is not None and self._transformer is not None and self._loader is not None, "Call setup() first"
+        assert (
+            self._extractor is not None
+            and self._transformer is not None
+            and self._loader is not None
+        ), "Call setup() first"
         watermark = self.watermark_mgr.get()
 
         while True:
@@ -209,7 +212,11 @@ class ETLPipeline:
             end_date.isoformat(),
         )
         run_start = time.time()
-        assert self._extractor is not None and self._transformer is not None and self._loader is not None, "Call setup() first"
+        assert (
+            self._extractor is not None
+            and self._transformer is not None
+            and self._loader is not None
+        ), "Call setup() first"
 
         # === EXTRACT ===
         result = self._extractor.extract_backfill(start_date, end_date)
