@@ -100,7 +100,7 @@ class PostgresClient:
         """
         with self.cursor() as cur:
             cur.execute(query, params)
-            return cur.fetchall()  # type: ignore[return-value]
+            return cur.fetchall()  # type: ignore[no-any-return]
 
     def ensure_indexes(self) -> None:
         """Create required indexes on the orders table if they don't exist.

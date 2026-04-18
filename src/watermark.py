@@ -45,7 +45,7 @@ class WatermarkManager:
         if doc and "last_watermark" in doc:
             watermark = doc["last_watermark"]
             logger.info("Current watermark: %s", watermark.isoformat())
-            return watermark
+            return watermark  # type: ignore[no-any-return]
 
         logger.info("No watermark found — starting from epoch (first run)")
         return EPOCH
